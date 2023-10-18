@@ -6,7 +6,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "src/styles/tailwind.scss";`,
+        additionalData: `@import "src/Assets/Styles/tailwind.scss";`,
       },
     },
   },
