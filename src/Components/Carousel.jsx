@@ -1,5 +1,5 @@
 import React from 'react';
-import { projectsData } from '../data';
+import { projectsData } from '../Services/data';
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef } from "react";
 import { SiGithub } from 'react-icons/si';
