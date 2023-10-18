@@ -89,32 +89,4 @@ export const projectsData = [
     description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, libero sed, quidem officia sequi sapiente fugit est, rem dolores',
   },
 
-
-  // {
-  //   id: 6,
-  //   title: 'project 6',
-  //   skills: 'Redux',
-  //   img: Image1,
-  // },
-
-  // {
-  //   id: 7,
-  //   title: 'project 7',
-  //   skills: 'Redux',
-  //   img: Image1,
-  // },
-
-  // {
-  //   id: 8,
-  //   title: 'project 8',
-  //   skills: 'Redux',
-  //   img: Image1,
-  // },
-
-  // {
-  //   id: 9,
-  //   title: 'project 9',
-  //   skills: 'Redux',
-  //   img: Image1,
-  // },
 ]
