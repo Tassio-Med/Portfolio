@@ -1,39 +1,39 @@
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
-import emailjs from '@emailjs/browser';
+// import emailjs from '@emailjs/browser';
 
 import { SiLinkedin, SiTelegram, SiGithub, SiWhatsapp, SiGmail, SiGooglemaps } from "react-icons/si"
 
 
 function ContactMe() {
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+  // const sendEmail = (e) => {
+  //   e.preventDefault();
 
-    toast.success("Mensagem enviada com sucesso!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+  //   toast.success("Mensagem enviada com sucesso!", {
+  //     position: "top-right",
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //   });
 
-    emailjs.sendForm(
-      'service_9g71ut5',
-      'template_zb7jvct',
-      e.target,
-      '5bxncS6Df2GIHTc_3',
-      )
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
-      e.target.reset();
-    };
+  //   emailjs.sendForm(
+  //     'service_9g71ut5',
+  //     'template_zb7jvct',
+  //     e.target,
+  //     '5bxncS6Df2GIHTc_3',
+  //     )
+  //     .then((result) => {
+  //         console.log(result.text);
+  //     }, (error) => {
+  //         console.log(error.text);
+  //     });
+  //     e.target.reset();
+  //   };
  
 
   return(
@@ -103,7 +103,7 @@ function ContactMe() {
           </a>
         </div>
       </div>
-      <form id="contactme" method="POST" className="p-6 rounded-xl bg-slate-50 flex flex-col justify-center items-center md:w-[450px] md:mx-8 "  onSubmit={sendEmail}>
+      {/* <form id="contactme" method="POST" className="p-6 rounded-xl bg-slate-50 flex flex-col justify-center items-center md:w-[450px] md:mx-8 "  onSubmit={sendEmail}>
         <div className="w-full text-[#001021]">
           <label htmlFor="name">Nome</label>
           <br/>
@@ -129,7 +129,7 @@ function ContactMe() {
           </button>
           <ToastContainer />
         </div>
-      </form>
+      </form> */}
     </div>
   )
 }

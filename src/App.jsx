@@ -4,7 +4,6 @@ import Hero from "./Components/Hero";
 import Carousel from "./Components/Carousel";
 import ContactMe from "./Components/ContactMe";
 import Footer from "./Components/Footer"
-// import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (

@@ -1,12 +1,12 @@
 // import Image1 from './Images/background.png'
-import ToDo from './Images/todolist.png'
-import Movie from './Images/movie-library.png'
-import Finantial from './Images/finantial-system.png'
-import Docker from './Images/docker.png'
-import Medieval from './Images/background.png'
-import Attendance from './Images/atendance.png'
-import StarWars from './Images/starwars.png'
-import TaskBoard from './Images/task.png'
+import ToDo from '../Assets/Images/todolist.png'
+import Movie from '../Assets/Images/movie-library.png'
+import Finantial from '../Assets/Images/finantial-system.png'
+import Docker from '../Assets/Images/docker.png'
+import Medieval from '../Assets/Images/background.png'
+import Attendance from '../Assets/Images/atendance.png'
+import StarWars from '../Assets/Images/starwars.png'
+import TaskBoard from '../Assets/Images/task.png'
 
 export const projectsData = [
   {

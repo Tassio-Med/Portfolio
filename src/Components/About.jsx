@@ -1,4 +1,4 @@
-import Image from '../Images/profile.png';
+import Image from '../Assets/Images/profile.png';
 
 import Skills from '../Components/Skills';
 
