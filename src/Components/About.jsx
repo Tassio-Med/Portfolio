@@ -1,63 +1,138 @@
-import Image from '../Assets/Images/profile.png';
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-import Skills from '../Components/Skills';
+function About() {
+  const [showH3, setShowH3] = useState(true);
+  const [isSliding, setIsSliding] = useState(false);
+  const [scrollEnabled, setScrollEnabled] = useState(true); 
 
-import { SiGithub, SiInstagram, SiLinkedin } from 'react-icons/si'
+  const [scale, setScale] = useState(2);
+  const [y, setY] = useState(0);
 
-function About(){
-  return(
-    <div id='about' className='w-full h-full block justify-center items-center md:flex md:justify-center md:items-center bg-[#001021]'>
-      <div className="flex justify-center items-center">
-        <div className="relative max-w-md mx-auto md:max-w-xl min-w-0 break-words bg-white w-full shadow-lg rounded-xl">
-            <div className="px-6">
-                <div className="flex flex-wrap justify-center">
-                    <div className="w-full flex justify-center">
-                        <div className="relative">
-                            <img src={ Image } alt="tassio" className="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px] hover:scale-110 ease-in-out duration-300"/>
-                        </div>
-                    </div>
-                    <div className="w-full text-center mt-20">
-                        <div className="flex justify-center lg:pt-4 pt-8 pb-0">
-                            <div className="p-3 text-center">
-                                <a href="https://github.com/Tassio-Med" target="_blank" rel="noopener noreferrer">
-                                  <span className="text-xl font-bold flex justify-center items-center uppercase tracking-wide text-slate-700 hover:scale-110 ease-in-out duration-300"><SiGithub className='text-2xl'/></span>
-                                  <span className="text-sm text-slate-400">Github</span>
-                                </a>
-                            </div>
-                            <div className="p-3 text-center">
-                                <a href="https://www.instagram.com/tassio.med/" target="_blank" rel="noopener noreferrer">
-                                  <span className="text-xl font-bold flex justify-center items-center uppercase tracking-wide text-slate-700 hover:scale-110 ease-in-out duration-300"><SiInstagram className='text-2xl'/></span>
-                                  <span className="text-sm text-slate-400">Instagram</span>
-                                </a>
-                            </div>
-                            <div className="p-3 text-center">
-                                <a href="https://www.linkedin.com/in/tassiomed98" target="_blank" rel="noopener noreferrer">
-                                  <span className="text-xl font-bold flex justify-center items-center uppercase tracking-wide text-slate-700 hover:scale-110 ease-in-out duration-300"><SiLinkedin className='text-2xl'/></span>
-                                  <span className="text-sm text-slate-400">Linkedin</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="text-center mt-2">
-                    <h3 className="text-2xl text-slate-700 font-bold leading-normal mb-1">Tássio Medeiros</h3>
-                    <div className="text-xs mt-0 mb-2 text-slate-400 font-bold uppercase">
-                        <i className="fas fa-map-marker-alt mr-2 text-slate-400 opacity-75">Teresina-PI, Brasil</i>
-                    </div>
-                </div>
-                <div className="mt-6 py-6 border-t border-slate-200 text-center">
-                    <div className="flex flex-wrap justify-center">
-                        <div className="w-full px-4">
-                            <p className="font-light leading-relaxed text-slate-600 mb-4">Sou Desenvolvedor Full Stack e atuo como freelancer. Trago comigo aprendizados de outras áreas, agora abraçando o conhecimento focado no Desenvolvimento Web. Perseverança e diálogo são valores que carrego e me inspiram a navegar nas águas do mundo tech, dando um up nas minhas Hard Skills e Soft Skills</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  const handleScrollZoom = () => {
+    const scrollTop = window.scrollY;
+    const newScale = 1 - scrollTop / 3000;
+    setScale(newScale < 0.2 ? 0.2 : newScale);
+    const newY = -scrollTop / 90;
+    setY(newY);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScrollZoom);
+    return () => {
+      window.removeEventListener('scroll', handleScrollZoom);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    if (inView) {
+      const scrollPosition = window.scrollY;
+      const element = document.getElementById("about");
+      const elementHeight = element.getBoundingClientRect().height;
+      const windowHeight = window.innerHeight;
+
+      // if (
+      //   scrollPosition + windowHeight / 2 >=
+      //   element.offsetTop + elementHeight / 2 &&
+      //   scrollPosition - windowHeight / 2 <=
+      //   element.offsetTop + elementHeight / 2
+      // ) {
+      //   setShowH3(true);
+      // } else {
+      //   setShowH3(false);
+      // }
+      if (
+        scrollPosition + windowHeight / 2 >=
+          element.offsetTop + elementHeight / 2 - 100 &&
+        scrollPosition - windowHeight / 2 <=
+          element.offsetTop + elementHeight / 2 - 100
+      ) {
+        setShowH3(true);
+      } else {
+        setShowH3(false);
+      }
+    }
+  };
+
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.4,
+  });
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [inView]);
+
+  const handleTextSlide = () => {
+    setIsSliding(true);
+    setTimeout(() => {
+      setIsSliding(false);
+      setScrollEnabled(true); 
+    }, 700); 
+  };
+
+  useEffect(() => {
+    if (inView) {
+      const timeout = setTimeout(() => {
+        setShowH3(true);
+        handleTextSlide(); 
+        setScrollEnabled(false); 
+      }, 500);
+      return () => clearTimeout(timeout);
+    }
+  }, [inView]);
+
+  const handleScrollInsideComponent = (e) => {
+    if (isSliding && !scrollEnabled) {
+      e.preventDefault(); 
+    }
+  };
+
+  return (
+    <div
+      id="about"
+      className="w-full h-screen flex bg-neutral-900"
+      onWheel={handleScrollInsideComponent}
+    >
+      <div className="w-full px-4 flex flex-start items-center justify-start">
+        <div className="flex w-full" ref={ref}>
+          <motion.h3
+            className="text-[90px] text-slate-50 font-bold mb-9"
+            initial={{ x: 0, opacity: 1 }}
+            animate={{ x: showH3 ? -800 : 0, opacity: showH3 ? 0 : 1 }}
+            transition={{ duration: 0.5 }}
+            style={{ scale: scale, y: y, lineHeight: 0.9 }}
+            id="title"
+          >
+            Meu nome é <br/> Tássio Medeiros :)
+          </motion.h3>
+          <motion.p
+            className="w-[80%] text-4xl font-bold text-left leading-relaxed text-slate-50 mb-4 z-50"
+            initial={{ x: showH3 ? -600 : 0, opacity: 1 }} 
+            animate={{ x: showH3 ? -600 : 0, opacity: showH3 ? 1 : 0 }} 
+            transition={{ duration: 0.7, type: "spring", stiffness: 80 }}
+            style={{ scale: scale, y: y, lineHeight: 0.9 }}
+            id="text"
+          >
+            Sou Desenvolvedor Full Stack e atuo como freelancer.
+            <br />
+            Trago comigo aprendizados de outras áreas, agora abraçando o conhecimento focado no Desenvolvimento Web.
+            <br />
+            Perseverança e diálogo são valores que carrego e me inspiram a navegar nas águas do mundo tech, dando um up nas minhas Hard Skills e Soft Skills
+          </motion.p>
         </div>
       </div>
-      <Skills/>
     </div>
-  )
+  );
 }
 
 export default About;
+
+
+
+
+
