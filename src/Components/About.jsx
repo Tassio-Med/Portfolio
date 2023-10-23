@@ -2,17 +2,16 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
+
 function About() {
   const [showH3, setShowH3] = useState(true);
-  const [isSliding, setIsSliding] = useState(false);
-  const [scrollEnabled, setScrollEnabled] = useState(true); 
-
-  const [scale, setScale] = useState(2);
+  const [scale, setScale] = useState(0.5);
   const [y, setY] = useState(0);
+  
 
   const handleScrollZoom = () => {
     const scrollTop = window.scrollY;
-    const newScale = 1 - scrollTop / 3000;
+    const newScale = 1 - scrollTop / 2000;
     setScale(newScale < 0.2 ? 0.2 : newScale);
     const newY = -scrollTop / 90;
     setY(newY);
@@ -32,21 +31,11 @@ function About() {
       const elementHeight = element.getBoundingClientRect().height;
       const windowHeight = window.innerHeight;
 
-      // if (
-      //   scrollPosition + windowHeight / 2 >=
-      //   element.offsetTop + elementHeight / 2 &&
-      //   scrollPosition - windowHeight / 2 <=
-      //   element.offsetTop + elementHeight / 2
-      // ) {
-      //   setShowH3(true);
-      // } else {
-      //   setShowH3(false);
-      // }
       if (
         scrollPosition + windowHeight / 2 >=
-          element.offsetTop + elementHeight / 2 - 100 &&
+          element.offsetTop + elementHeight / 2 - 150 &&
         scrollPosition - windowHeight / 2 <=
-          element.offsetTop + elementHeight / 2 - 100
+          element.offsetTop + elementHeight / 2 - 150
       ) {
         setShowH3(true);
       } else {
@@ -67,38 +56,13 @@ function About() {
     };
   }, [inView]);
 
-  const handleTextSlide = () => {
-    setIsSliding(true);
-    setTimeout(() => {
-      setIsSliding(false);
-      setScrollEnabled(true); 
-    }, 700); 
-  };
-
-  useEffect(() => {
-    if (inView) {
-      const timeout = setTimeout(() => {
-        setShowH3(true);
-        handleTextSlide(); 
-        setScrollEnabled(false); 
-      }, 500);
-      return () => clearTimeout(timeout);
-    }
-  }, [inView]);
-
-  const handleScrollInsideComponent = (e) => {
-    if (isSliding && !scrollEnabled) {
-      e.preventDefault(); 
-    }
-  };
 
   return (
     <div
       id="about"
       className="w-full h-screen flex bg-neutral-900"
-      onWheel={handleScrollInsideComponent}
     >
-      <div className="w-full px-4 flex flex-start items-center justify-start">
+      <div className="w-full px-4 flex flex-start items-center justify-start overflow-x-hidden">
         <div className="flex w-full" ref={ref}>
           <motion.h3
             className="text-[90px] text-slate-50 font-bold mb-9"
@@ -111,7 +75,7 @@ function About() {
             Meu nome é <br/> Tássio Medeiros :)
           </motion.h3>
           <motion.p
-            className="w-[80%] text-4xl font-bold text-left leading-relaxed text-slate-50 mb-4 z-50"
+            className="w-[80%] text-[45px] font-bold text-left leading-relaxed text-slate-50"
             initial={{ x: showH3 ? -600 : 0, opacity: 1 }} 
             animate={{ x: showH3 ? -600 : 0, opacity: showH3 ? 1 : 0 }} 
             transition={{ duration: 0.7, type: "spring", stiffness: 80 }}
@@ -121,7 +85,6 @@ function About() {
             Sou Desenvolvedor Full Stack e atuo como freelancer.
             <br />
             Trago comigo aprendizados de outras áreas, agora abraçando o conhecimento focado no Desenvolvimento Web.
-            <br />
             Perseverança e diálogo são valores que carrego e me inspiram a navegar nas águas do mundo tech, dando um up nas minhas Hard Skills e Soft Skills
           </motion.p>
         </div>
@@ -133,6 +96,39 @@ function About() {
 export default About;
 
 
+// import { motion } from "framer-motion";
+// import { useInView } from "react-intersection-observer";
 
+// function About() {
+
+//   return (
+//     <div
+//       id="about"
+//       className="w-full h-screen flex bg-neutral-900"
+//     >
+//       <div className="w-full px-4 flex flex-start items-center justify-start">
+//         <div className="flex w-full" >
+//           <motion.h3
+//             className="text-[55px] text-slate-50 font-bold mb-9"
+//             id="title"
+//           >
+//             Meu nome é <br/> Tássio Medeiros :)
+//           </motion.h3>
+//           <motion.p
+//             className="w-[80%] text-[30px] font-bold text-left leading-relaxed text-slate-50 z-50"
+//             id="text"
+//           >
+//             Sou Desenvolvedor Full Stack e atuo como freelancer.
+//             <br />
+//             Trago comigo aprendizados de outras áreas, agora abraçando o conhecimento focado no Desenvolvimento Web.
+//             Perseverança e diálogo são valores que carrego e me inspiram a navegar nas águas do mundo tech, dando um up nas minhas Hard Skills e Soft Skills
+//           </motion.p>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default About;
 
 

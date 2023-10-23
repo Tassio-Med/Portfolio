@@ -21,9 +21,9 @@ function Nav(){
               initial={{ opacity: 1, x: -500 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3, delay: 0.5 }}
+              transition={{ duration: 0.3, delay: 0.5  }}
           >
-            <Link to="hero" smooth={true} duration={500} className="tracking-wider">tm.</Link>
+            <Link to="hero" smooth={true} duration={1300} className="tracking-wider">tm.</Link>
           </motion.h1>
           <ul className="hidden text-slate-100 w-full justify-end md:flex">
             <motion.li
@@ -42,7 +42,7 @@ function Nav(){
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3, delay: 0.7 }}  
             >
-              <Link to="about" smooth={true} offset={-10} duration={500} className="font-medium">Quem sou eu?</Link>
+              <Link to="about" smooth={true} offset={-200} duration={500} className="font-medium">Quem sou eu?</Link>
             </motion.li>
             <motion.li
               className="p-2 mr-4 rounded-lg  cursor-pointer hover:underline"
