@@ -7,11 +7,11 @@ import Footer from "./Components/Footer"
 
 function App() {
   return (
-      <div className="bg-[#001021]">
+      <div className="bg-neutral-900">
         <Nav/>
         <Hero/>
-        <Carousel/>
         <About/>
+        <Carousel/>
         <ContactMe/>
         <Footer/>
       </div>
