@@ -4,7 +4,6 @@
 
 @layer base {
   .tm {
-    /* font-family: Gruppo , Arial , Helvetica , sans-serif; */
     letter-spacing: 0.05em;
     font-weight: 450;
     font-size: 50px;
@@ -13,22 +12,5 @@
     color: #ffffffeb;
     cursor: pointer;
     transition: 0.396s;
-  }
-  
-  .tm:hover {
-    animation: tm 0.6s both;
-    text-shadow: 0px 0px 12px  #5fadfc;
-    color: white;
-  }
-
-  .animation{
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .animation:hover {
-    color: white;
-    box-shadow: 7px 5px 56px -14px #114477;
-    /* transform: scale(1.1); */
   }
 }
