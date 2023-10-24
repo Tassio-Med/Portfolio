@@ -1,38 +1,61 @@
-// import About from "./Components/About";
-// import Nav from "./Components/Navbar"
+// import { useState, useEffect } from "react";
+// // import { motion, useScroll } from "framer-motion"
+
+// import Loader from "./Components/Loader";
+// import Nav from "./Components/Navbar";
 // import Hero from "./Components/Hero";
+// import Name from "./Components/Name";
+// import Experience from "./Components/Experience";
 // import Carousel from "./Components/Carousel";
 // import ContactMe from "./Components/ContactMe";
-// import Footer from "./Components/Footer"
-
+// import Footer from "./Components/Footer";
+// import "./Assets/Styles/index.css"
 
 // function App() {
+//   const [isLoading, setIsLoading] = useState(true);
+
+
+//   useEffect(() => {
+//     setTimeout(() => {
+//       setIsLoading(false);
+//     }, 4500);
+//   }, []);
+
 //   return (
-//       <div className="bg-neutral-900">
-//         <Nav/>
-//         <Hero/>
-//         <About/>
-//         <Carousel/>
-//         <ContactMe/>
-//         <Footer/>
-//       </div>
+//     <div className="bg-neutral-900">
+//       {isLoading ? (
+//         <Loader />
+//       ) : (
+//         <>
+//           <Nav />
+//           <Hero />
+//           <Name />
+//           <Experience />
+//           <Carousel />
+//           <ContactMe />
+//           <Footer />
+//         </>
+//       )}
+//     </div>
 //   );
 // }
 
 // export default App;
 
-
 import { useState, useEffect } from "react";
+import { motion, useScroll } from "framer-motion";
 import Loader from "./Components/Loader";
 import Nav from "./Components/Navbar";
 import Hero from "./Components/Hero";
-import About from "./Components/About";
+import Name from "./Components/Name";
+import Experience from "./Components/Experience";
 import Carousel from "./Components/Carousel";
 import ContactMe from "./Components/ContactMe";
 import Footer from "./Components/Footer";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     setTimeout(() => {
@@ -48,10 +71,15 @@ function App() {
         <>
           <Nav />
           <Hero />
-          <About />
+          <Name />
+          <Experience />
           <Carousel />
           <ContactMe />
           <Footer />
+          <motion.div
+            className="w-full h-2 bg-slate-50 fixed top-0 left-0 origin-left z-50"
+            style={{ scaleX: scrollYProgress }}
+          />
         </>
       )}
     </div>
