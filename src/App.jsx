@@ -1,47 +1,3 @@
-// import { useState, useEffect } from "react";
-// // import { motion, useScroll } from "framer-motion"
-
-// import Loader from "./Components/Loader";
-// import Nav from "./Components/Navbar";
-// import Hero from "./Components/Hero";
-// import Name from "./Components/Name";
-// import Experience from "./Components/Experience";
-// import Carousel from "./Components/Carousel";
-// import ContactMe from "./Components/ContactMe";
-// import Footer from "./Components/Footer";
-// import "./Assets/Styles/index.css"
-
-// function App() {
-//   const [isLoading, setIsLoading] = useState(true);
-
-
-//   useEffect(() => {
-//     setTimeout(() => {
-//       setIsLoading(false);
-//     }, 4500);
-//   }, []);
-
-//   return (
-//     <div className="bg-neutral-900">
-//       {isLoading ? (
-//         <Loader />
-//       ) : (
-//         <>
-//           <Nav />
-//           <Hero />
-//           <Name />
-//           <Experience />
-//           <Carousel />
-//           <ContactMe />
-//           <Footer />
-//         </>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default App;
-
 import { useState, useEffect } from "react";
 import { motion, useScroll } from "framer-motion";
 import Loader from "./Components/Loader";
@@ -49,7 +5,6 @@ import Nav from "./Components/Navbar";
 import Hero from "./Components/Hero";
 import Name from "./Components/Name";
 import Experience from "./Components/Experience";
-import Carousel from "./Components/Carousel";
 import ContactMe from "./Components/ContactMe";
 import Footer from "./Components/Footer";
 
@@ -73,7 +28,6 @@ function App() {
           <Hero />
           <Name />
           <Experience />
-          <Carousel />
           <ContactMe />
           <Footer />
           <motion.div
@@ -87,3 +41,5 @@ function App() {
 }
 
 export default App;
+
+
