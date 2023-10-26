@@ -1,80 +1,135 @@
-import { useState} from 'react';
-import { motion } from 'framer-motion';
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { MdMenu, MdClose } from "react-icons/md";
+import { Link } from "react-scroll";
 
-import { Link } from 'react-scroll'
-import { HiMenu } from 'react-icons/hi';
-import { MdClose } from 'react-icons/md';
 
-function Nav(){
-  const [navbar, setNavbar] = useState(false);
-  const handleClick = () => setNavbar(!navbar);
 
-  const handleClose = () => setNavbar(!navbar);
+function Nav() {
+  const [open, setOpen] = useState(false);
 
-  return(
-    <nav className="w-screen z-30 bg-neutral-900 fixed">
+  const toggleSidebar = () => {
+    setOpen(!open);
+  };
 
-      <div className="px-2 flex justify-between items-center w-full h-full">
-        <div className="flex items-center w-screen sm:mx-6">
-          <motion.h1
-            className="p-4 mr-4 font-bold text-2xl tm tm:hover md:text-3xl"
-              initial={{ opacity: 1, x: -500 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3, delay: 0.5  }}
+  const sideVariants = {
+    closed: {
+      transition: {
+        staggerChildren: 0.2,
+        staggerDirection: -1,
+      },
+    },
+    open: {
+      transition: {
+        staggerChildren: 0.2,
+        staggerDirection: 1,
+      },
+    },
+  };
+
+  const contentVariants = {
+    closed: {
+      opacity: 0,
+    },
+    open: {
+      opacity: 1,
+    },
+  };
+
+  const links = [
+    {
+      text: "Quem sou eu?",
+      to: "about",
+      smooth: true,
+      offset: -200,
+      duration: 500,
+    },
+    {
+      text: "Meus projetos",
+      to: "carousel",
+      smooth: true,
+      duration: 500,
+    },
+    {
+      text: "Fale comigo",
+      to: "contact",
+      smooth: true,
+      offset: -100,
+      duration: 500,
+    },
+  ];
+
+  return (
+    <main className="fixed flex justify-between z-[100]">
+      <h1 className="text-slate-50 absolute left-0 p-4 font-bold text-2xl tm tm:hover md:text-3xl z-50 drop-shadow-xl">
+        <Link to="hero" smooth={true} duration={1300} className="tracking-wider">
+          tm.
+        </Link>
+      </h1>
+      <AnimatePresence>
+        {open && (
+          <motion.aside
+            variants={sideVariants}
+            initial={{ width: 0 }}
+            animate={{
+              width: 500,
+            }}
+            exit={{
+              width: 0,
+              transition: { delay: 0.2, duration: 0.5 },
+            }}
+            className="bg-slate-50 h-screen z-[80] shadow-xl"
           >
-            <Link to="hero" smooth={true} duration={1300} className="tracking-wider">tm.</Link>
-          </motion.h1>
-          <ul className="hidden text-slate-100 w-full justify-end md:flex">
-            <motion.li
-              className="p-2 mr-6 rounded-lg  cursor-pointer hover:underline"
-              initial={{ opacity: 1, x: 500 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3, delay: 0.5 }}
+            <motion.div
+              className="container mt-20 ml-16  flex items-center"
+              initial="closed"
+              animate="open"
+              exit="closed"
+              variants={contentVariants}
             >
-              <Link to="carousel" smooth={true} duration={500} className="font-medium">Meus projetos</Link>
-            </motion.li>
-            <motion.li
-              className="p-2 mr-6 rounded-lg  cursor-pointer hover:underline"
-              initial={{ opacity: 1, x: 500 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3, delay: 0.7 }}  
-            >
-              <Link to="about" smooth={true} offset={-200} duration={500} className="font-medium">Quem sou eu?</Link>
-            </motion.li>
-            <motion.li
-              className="p-2 mr-4 rounded-lg  cursor-pointer hover:underline"
-              initial={{ opacity: 1, x: 500 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3, delay: 0.9 }}
-            >
-              <Link to="contact" smooth={true} offset={-100} duration={500} className="font-medium">Fale comigo</Link>
-            </motion.li>
-          </ul>
-        </div>
-
-        <div className="text-slate-50 md:hidden mr-4" onClick={handleClick}>
-          {!navbar ? <HiMenu className="text-xl cursor-pointer" /> : <MdClose className="text-2xl text-slate-50 cursor-pointer" />}
-        </div>
+              <ul className="text-neutral-900 w-full block items-center p-4">
+                {links.map((link, index) => (
+                  <li
+                    key={index}
+                    className="w-full text-5xl p-2 mr-6 mb-5 rounded-lg cursor-pointer hover:underline"
+                  >
+                    <Link
+                      to={link.to}
+                      smooth={link.smooth}
+                      offset={link.offset || 0}
+                      duration={link.duration}
+                      className="font-medium"
+                    >
+                      {link.text}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </motion.aside>
+        )}
+      </AnimatePresence>
+      <div className="fixed container">
+        {open ? (
+          <motion.button
+            whileHover={{ scale: 1.2 }}
+            onClick={toggleSidebar}
+            className="absolute right-0 z-50 cursor-pointer m-5 border-none py-2 px-2 bg-slate-50 rounded-full shadow-xl"
+          >
+            <MdClose size={24} />
+          </motion.button>
+        ) : (
+          <motion.button
+            whileHover={{ scale: 1.2 }}
+            onClick={toggleSidebar}
+            className="absolute right-0 z-50 cursor-pointer m-5 border-none py-2 px-2 bg-slate-50 rounded-full shadow-xl"
+          >
+            <MdMenu size={24} />
+          </motion.button>
+        )}
       </div>
-
-      <ul className={!navbar ? "hidden" : "absolute bg-[#001933] w-full px-8 text-slate-50"}>
-        <li className="p-2 mb-3 rounded-lg list-none">
-          <Link to="carousel" smooth={true} duration={500} onClick={handleClose} className="cursor-pointer">Meus projetos</Link>
-        </li>
-        <li className="p-2 mb-3 rounded-lg list-none">
-          <Link to="about" smooth={true} offset={-200} duration={500} onClick={handleClose} className="cursor-pointer">Quem sou eu?</Link>
-        </li>
-        <li className="p-2 mb-3 rounded-lg list-none">
-          <Link to="contact" smooth={true} offset={-100} duration={500} onClick={handleClose} className="cursor-pointer">Fale comigo</Link>
-        </li>
-      </ul>
-    </nav>
-
-  )
+    </main>
+  );
 }
 
 export default Nav;
