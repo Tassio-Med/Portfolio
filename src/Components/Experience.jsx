@@ -1,8 +1,9 @@
 import { useRef } from "react";
 import { motion, useMotionTemplate, useSpring, useTransform, useScroll } from "framer-motion";
 import Carousel from "./Carousel";
-import "../Assets/Styles/index.css"
-import Skills from "./Skills"
+import "../Assets/Styles/index.css";
+import Skills from "./Skills";
+import SkillsTitle from "./SkillsTitles";
 
 function Experience() {
   const ref = useRef(null);
@@ -17,6 +18,7 @@ function Experience() {
   const scale = useTransform(scrollYProgressSpring, [0, 1], [1, 12]);
   const imageX = useTransform(scrollYProgressSpring, [0, 1], [50, 0]);
   const imageXCalc = useMotionTemplate`max(0px, calc(${imageX}% + calc(${imageX}vw - 300px)))`;
+
 
 
   return (
@@ -43,11 +45,16 @@ function Experience() {
       <div className="mt-[-200vh] h-[200vh] overflow-clip bg-neutral-900 pb-20">
         <motion.span
           style={{ x: imageXCalc }}
-          className="sticky top-1/2 mx-auto block aspect-video w-[60%] h-[40%] max-w-[90%] rounded-xl bg-slate-50"
+          className="sticky top-1/2 mx-auto block aspect-video w-[60%] h-[40%] max-w-[90%] rounded-xl bg-slate-50 z-[1]"
         >
           <Skills/>
         </motion.span>
-        <h2 className="text-slate-50 tex-4xl">MY SKILLS</h2>
+        <section className="w-full mt-[218px] text-slate-50">
+          <SkillsTitle baseVelocity={-2}>Skills</SkillsTitle>
+          <SkillsTitle baseVelocity={2}>Skills</SkillsTitle>
+          <SkillsTitle baseVelocity={-2}>Skills</SkillsTitle>
+          <SkillsTitle baseVelocity={2}>Skills</SkillsTitle>
+        </section>
           
       </div>
       <Carousel/>
