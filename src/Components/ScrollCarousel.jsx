@@ -22,6 +22,7 @@ const HorizontalScrollCarousel = () => {
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <motion.div
           style={{ x: x2 }}
+          transition={{ duration: 0.7, type: "spring", stiffness: 80 }}
           className="flex gap-4"
         >
           {projectsData.map((project) => {

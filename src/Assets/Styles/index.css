@@ -3,14 +3,53 @@
 @import 'tailwindcss/utilities';
 
 @layer base {
-  .tm {
-    letter-spacing: 0.05em;
-    font-weight: 450;
-    font-size: 50px;
-    transition: 0.2s;
-    text-decoration:none !important;
-    color: #ffffffeb;
-    cursor: pointer;
-    transition: 0.396s;
+
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: white;
+    transform-origin: 0%;
   }
+
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .hero-background {
+    background: linear-gradient(
+        to bottom,
+        theme("colors.neutral.900") 100px,
+        transparent 100px,
+        transparent calc(200vh - 40px),
+        theme("colors.neutral.900") calc(80vh - 40px)
+      ),
+      linear-gradient(
+        to right,
+        theme("colors.slate.900") 24px,
+        transparent 24px,
+        transparent calc(100% - 24px),
+        theme("colors.neutral.900") calc(100% - 24px)
+      );
+  }
+  
+  .window-mask {
+    mask-image: linear-gradient(black, black), url("/window.svg");
+    mask-composite: exclude;
+    mask-repeat: no-repeat;
+    mask-size: auto, 300px auto;
+    mask-position: center center, center right 3rem;
+  }
+  
+  @media (max-width: theme("screens.md")) {
+    .window-mask {
+      mask-size: auto, 150px auto;
+      mask-position: center center, center bottom 1.5rem;
+    }
+  }
+
+
 }
+

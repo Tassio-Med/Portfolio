@@ -37,7 +37,7 @@ function Experience() {
               Perseverança e diálogo são valores que carrego e me inspiram a navegar nas águas do mundo tech, dando um up nas minhas Hard Skills e Soft Skills.
               </h1>
             </div>
-            <div className="bg-neutral-900 mx-auto -mb-7 mt-4 box-content aspect-[5/8] w-[150px] min-w-[150px] rounded-full border-[4px] md:my-auto md:-mr-1 md:ml-auto md:w-[300px] md:min-w-[300px]" />
+            <div className="bg-neutral-900 mx-auto -mb-7 mt-4 box-content aspect-[5/8] w-[150px] min-w-[150px] rounded-full border-[4px] border-slate-100 md:my-auto md:-mr-1 md:ml-auto md:w-[300px] md:min-w-[300px] shadow-inner" />
 
           </div>
         </motion.div>
@@ -45,9 +45,11 @@ function Experience() {
       <div className="mt-[-200vh] h-[200vh] overflow-clip bg-neutral-900 pb-20">
         <motion.span
           style={{ x: imageXCalc }}
-          className="sticky top-1/2 mx-auto block aspect-video w-[60%] h-[40%] max-w-[90%] rounded-xl bg-slate-50 z-[1]"
+          className="sticky top-1/2 mx-auto block aspect-video w-[65%] h-[40%] max-w-[90%] rounded-xl bg-slate-50 z-[1] shadow-md"
         >
-          <Skills/>
+          <div className="w-full h-[100%] flex items-center">
+            <Skills/>
+          </div>
         </motion.span>
         <section className="w-full mt-[218px] text-slate-50">
           <SkillsTitle baseVelocity={-2}>Skills</SkillsTitle>
