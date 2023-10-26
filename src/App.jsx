@@ -7,6 +7,7 @@ import Name from "./Components/Name";
 import Experience from "./Components/Experience";
 import ContactMe from "./Components/ContactMe";
 import Footer from "./Components/Footer";
+import Responsividade from "./Components/Responsividade";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,8 +17,11 @@ function App() {
     setTimeout(() => {
       setIsLoading(false);
     }, 4500);
+
   }, []);
 
+  // const isMobile = window.userAgent.includes("mobile");
+  const isMobile = window.userAgent && window.userAgent.includes("mobile");
   return (
     <div className="bg-neutral-900">
       {isLoading ? (
@@ -29,9 +33,10 @@ function App() {
           <Name />
           <Experience />
           <ContactMe />
+          {isMobile && <Responsividade isMobileOptimized/>}
           <Footer />
           <motion.div
-            className="w-full h-2 bg-slate-50 fixed top-0 left-0 origin-left z-50"
+            className="w-full h-2 bg-slate-100 fixed top-0 left-0 origin-left z-[100]"
             style={{ scaleX: scrollYProgress }}
           />
         </>
