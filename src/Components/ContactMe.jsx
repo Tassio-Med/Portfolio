@@ -18,7 +18,7 @@ function ContactMe() {
   return (
     <motion.div
       id="contact"
-      className="w-full h-full mt-10 block justify-center items-center md:flex md:justify-center md:items-center md:mt-28 bg-neutral-900"
+      className="overflow-hidden w-full screen mt-10 block justify-center items-center md:flex md:justify-center md:items-center md:mt-28 bg-neutral-900"
       ref={ref}
       initial="hidden"
       animate={controls}
