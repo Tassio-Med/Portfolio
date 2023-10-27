@@ -38,10 +38,17 @@ function Nav() {
 
   const links = [
     {
+      text: "Home",
+      to: "home",
+      smooth: true,
+      offset: -85,
+      duration: 2000,
+    },
+    {
       text: "Quem sou eu?",
       to: "about",
       smooth: true,
-      offset: -200,
+      offset: -85,
       duration: 500,
     },
     {
@@ -61,8 +68,8 @@ function Nav() {
 
   return (
     <main className="fixed flex justify-between z-[100]">
-      <h1 className="text-slate-50 absolute left-0 p-4 font-bold text-2xl tm tm:hover md:text-3xl z-50 drop-shadow-xl">
-        <Link to="hero" smooth={true} duration={1300} className="tracking-wider">
+      <h1 className="text-slate-50 absolute left-0 p-4 font-bold text-2xl z-50 cursor-pointer">
+        <Link to="home" smooth={true} duration={1300} className="tracking-wider drop-shadow-xl">
           tm.
         </Link>
       </h1>
