@@ -3,7 +3,6 @@ import { motion, useScroll } from "framer-motion";
 import Loader from "./Components/Loader";
 import Nav from "./Components/Navbar";
 import Hero from "./Components/Hero";
-import Name from "./Components/Name";
 import Experience from "./Components/Experience";
 import ContactMe from "./Components/ContactMe";
 import Footer from "./Components/Footer";
@@ -20,7 +19,6 @@ function App() {
 
   }, []);
 
-  // const isMobile = window.userAgent.includes("mobile");
   const isMobile = window.userAgent && window.userAgent.includes("mobile");
   return (
     <div className="bg-neutral-900">
@@ -30,7 +28,6 @@ function App() {
         <>
           <Nav />
           <Hero />
-          <Name />
           <Experience />
           <ContactMe />
           {isMobile && <Responsividade isMobileOptimized/>}
