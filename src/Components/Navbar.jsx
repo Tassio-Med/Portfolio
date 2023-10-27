@@ -33,6 +33,9 @@ function Nav() {
     },
     open: {
       opacity: 1,
+      transition: {
+        delay: 0.3, 
+      },
     },
   };
 
