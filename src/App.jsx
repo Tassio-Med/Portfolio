@@ -7,6 +7,7 @@ import Experience from "./Components/Experience";
 import ContactMe from "./Components/ContactMe";
 import Footer from "./Components/Footer";
 import Responsividade from "./Components/Responsividade";
+import Lenis from '@studio-freight/lenis'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,6 +17,15 @@ function App() {
     setTimeout(() => {
       setIsLoading(false);
     }, 4500);
+
+    const lenis = new Lenis()
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
 
   }, []);
 
