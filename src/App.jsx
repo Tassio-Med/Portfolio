@@ -6,11 +6,13 @@ import Hero from "./Components/Hero";
 import Experience from "./Components/Experience";
 import ContactMe from "./Components/ContactMe";
 import Footer from "./Components/Footer";
-import Responsividade from "./Components/Responsividade";
+import MobileWarning from "./Components/MobileWarning";
 import Lenis from '@studio-freight/lenis'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [showMobileWarning, setShowMobileWarning] = useState(false); 
+  
   const { scrollYProgress } = useScroll();
 
   useEffect(() => {
@@ -25,11 +27,18 @@ function App() {
       requestAnimationFrame(raf)
     }
 
-    requestAnimationFrame(raf)
+    requestAnimationFrame(raf);
+
+    if (window.innerWidth < 768) {
+      setShowMobileWarning(true);
+    }
 
   }, []);
 
-  const isMobile = window.userAgent && window.userAgent.includes("mobile");
+  const closeMobileWarning = () => {
+    setShowMobileWarning(false);
+  };
+
   return (
     <div className="bg-neutral-900">
       {isLoading ? (
@@ -40,7 +49,6 @@ function App() {
           <Hero />
           <Experience />
           <ContactMe />
-          {isMobile && <Responsividade isMobileOptimized/>}
           <Footer />
           <motion.div
             className="w-full h-[6px] bg-slate-100 fixed top-0 left-0 origin-left z-[100]"
@@ -48,6 +56,8 @@ function App() {
           />
         </>
       )}
+
+      {showMobileWarning && <MobileWarning onClose={closeMobileWarning} />}
     </div>
   );
 }
