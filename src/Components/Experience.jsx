@@ -22,7 +22,7 @@ function Experience() {
 
 
   return (
-    <main>
+    <main id="about">
       <div ref={ref} className="relative z-10 h-[200vh] overflow-clip">
         <motion.div
           style={{ scale }}
@@ -30,11 +30,10 @@ function Experience() {
         >
           <div className="window-mask flex flex-col rounded-3xl bg-slate-50 p-12 md:flex-row">
             <div className="flex h-full flex-col">
-              <h1 className="mb-5 max-w-[40ch] text-4xl font-bold leading-[0.85] md:my-auto md:text-[80px] xl:text-[30px]">
-              Sou Desenvolvedor Full Stack e atuo como freelancer.
-              <br />
+              <h1 className="mb-5 max-w-[40ch] font-bold leading-10 md:my-auto md:text-[80px] xl:text-[40px]">
+              Sou <span className="text-[#7575eb]">Desenvolvedor Full Stack.</span>
+              <br/>
               Trago comigo aprendizados de outras áreas, agora abraçando o conhecimento focado no Desenvolvimento Web.
-              Perseverança e diálogo são valores que carrego e me inspiram a navegar nas águas do mundo tech, dando um up nas minhas Hard Skills e Soft Skills.
               </h1>
             </div>
             <div className="bg-neutral-900 mx-auto -mb-7 mt-4 box-content aspect-[5/8] w-[150px] min-w-[150px] rounded-full border-[4px] border-slate-100 md:my-auto md:-mr-1 md:ml-auto md:w-[300px] md:min-w-[300px] shadow-inner" />
