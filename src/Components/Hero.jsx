@@ -1,49 +1,35 @@
-import { useState, useEffect } from 'react';
+import styles from '../Assets/Styles/page.module.scss';
+import { useState } from 'react';  
 import { motion } from 'framer-motion';
+import useMousePosition from './useMousePosition';
 
-const Hero = () => {
-  const fadeInLeft = {
-    hidden: { x: '100%', opacity: 0 },
-    visible: { x: 0, opacity: 1 },
-  };
+export default function Hero() {
 
-  const [scale, setScale] = useState(1);
-  const [y, setY] = useState(0);
-
-  const handleScroll = () => {
-    const scrollTop = window.scrollY;
-    const newScale = 1 - scrollTop / 600; 
-    setScale(newScale < 0.2 ? 0.2 : newScale); 
-    const newY = -scrollTop / 90; 
-    setY(newY);
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  const [isHovered, setIsHovered] = useState(false);
+  const { x, y } = useMousePosition();
+  const size = isHovered ? 400 : 40;
 
   return (
-    <div
-      className="w-full h-screen bg-neutral-900 flex justify-center items-center overflow-x-hidden" id="hero"
-    >
-      <div className="flex justify-center items-center w-full py-24">
-        <motion.h1
-          initial="hidden"
-          animate="visible"
-          variants={fadeInLeft}
-          transition={{ duration: 1, type: "spring", stiffness: 50 }}
-          style={{ scale: scale, y: y, lineHeight: 0.9 }} 
-          className="text-slate-50 text-[230px] font-bold z-40"
-        >
-          HELLO WORLD
-        </motion.h1>
+    <main className={styles.main}>
+      <motion.div 
+        className={styles.mask}
+        animate={{
+          WebkitMaskPosition: `${x - (size/1.5)}px ${y - (size/1.5)}px`,
+          WebkitMaskSize: `${size}px`,
+        }}
+        transition={{ type: "tween", ease: "backOut", duration:0.5}}
+      >
+          <p onMouseEnter={() => {setIsHovered(true)}} onMouseLeave={() => {setIsHovered(false)}} className='text-4xl'>
+            Meu nome é Tássio Medeiros :)<br/>
+            É um prazer te ver por aqui.
+          </p>
+      </motion.div>
+
+      <div className={styles.body}>
+        <p><span>Hello World.</span>
+        <br/>Navegue com apreciação</p>
       </div>
-    </div>
-  );
-};
 
-export default Hero;
-
+    </main>
+  )
+}

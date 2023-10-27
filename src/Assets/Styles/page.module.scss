@@ -1,0 +1,34 @@
+.main{
+  height: 100vh;
+  width: 100%;
+
+  .mask, .body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f8fafc;
+    font-size: 70px;
+    font-weight: bold;
+    line-height: 70px;
+    cursor: default;
+    
+    p{
+      width: 1000px;
+      padding:40px;
+    }
+    span{
+      color: rgb(117, 117, 235);
+    }
+  }
+
+  .mask{
+    mask-image: url('../Images/svg/mask.svg');
+    mask-repeat: no-repeat;
+    mask-size: 40px;
+    background: #f8fafc;
+    position: absolute;
+    color: #171717;
+  }
+}
