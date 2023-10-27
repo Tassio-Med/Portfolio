@@ -43,7 +43,7 @@ function App() {
           {isMobile && <Responsividade isMobileOptimized/>}
           <Footer />
           <motion.div
-            className="w-full h-2 bg-slate-100 fixed top-0 left-0 origin-left z-[100]"
+            className="w-full h-[6px] bg-slate-100 fixed top-0 left-0 origin-left z-[100]"
             style={{ scaleX: scrollYProgress }}
           />
         </>
