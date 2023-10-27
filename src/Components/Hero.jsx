@@ -10,7 +10,7 @@ export default function Hero() {
 
 
   return (
-    <main className={styles.main}>
+    <main className={styles.main} id="home">
       <motion.div 
         className={styles.mask}
         animate={{
