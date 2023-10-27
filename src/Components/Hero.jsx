@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import useMousePosition from './useMousePosition';
 
 export default function Hero() {
-
   const [isHovered, setIsHovered] = useState(false);
   const { x, y } = useMousePosition();
-  const size = isHovered ? 400 : 40;
+  const size = isHovered ? 450 : 40;
+
 
   return (
     <main className={styles.main}>
@@ -17,10 +17,10 @@ export default function Hero() {
           WebkitMaskPosition: `${x - (size/1.5)}px ${y - (size/1.5)}px`,
           WebkitMaskSize: `${size}px`,
         }}
-        transition={{ type: "tween", ease: "backOut", duration:0.5}}
+        transition={{ type: "tween", ease: "backOut", duration: 0.8}}
       >
-          <p onMouseEnter={() => {setIsHovered(true)}} onMouseLeave={() => {setIsHovered(false)}} className='text-4xl'>
-            Meu nome é Tássio Medeiros :)<br/>
+          <p onMouseEnter={() => {setIsHovered(true)}} onMouseLeave={() => {setIsHovered(false)}} className='text-6xl'>
+            Meu nome é <span className="text-[#7575eb]">Tássio Medeiros :)</span><br/>
             É um prazer te ver por aqui.
           </p>
       </motion.div>
