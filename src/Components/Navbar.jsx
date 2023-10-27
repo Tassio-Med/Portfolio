@@ -68,11 +68,14 @@ function Nav() {
 
   return (
     <main className="fixed flex justify-between z-[100]">
-      <h1 className="text-slate-50 absolute left-0 p-4 font-bold text-2xl z-50 cursor-pointer">
+      <motion.h1
+        className="text-slate-50 absolute left-0 p-4 font-bold text-4xl z-50 cursor-pointer"
+        whileHover={{ scale: 1.4 }}
+      >
         <Link to="home" smooth={true} duration={1300} className="tracking-wider drop-shadow-xl">
           tm.
         </Link>
-      </h1>
+      </motion.h1>
       <AnimatePresence>
         {open && (
           <motion.aside
